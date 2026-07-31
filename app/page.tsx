@@ -4,6 +4,7 @@ import Hero from "@/components/hero/Hero";
 import About from "@/components/about/About";
 import Skills from "@/components/skills/Skills";
 import Experience from "@/components/experience/Experience";
+import Projects from "@/components/projects/Projects";
 import Testimonials from "@/components/testimonials/Testimonials";
 import Contact from "@/components/contact/Contact";
 
@@ -16,10 +17,10 @@ export default function Home() {
         <About />
         <Skills />
         <Experience />
+        <Projects />
         <Testimonials />
         <Contact />
         {/*
-          Phase 3 adds: Projects (#projects)
           Phase 4 adds: Blog (#blog)
         */}
       </main>
