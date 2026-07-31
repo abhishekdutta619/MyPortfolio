@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Container from "@/components/layout/Container";
-import MetricChip from "./MetricChip";
+import MetricChip from "@/components/shared/MetricChip";
 import { profile, impactMetrics } from "@/lib/data/profile";
 
 export default function Hero() {
