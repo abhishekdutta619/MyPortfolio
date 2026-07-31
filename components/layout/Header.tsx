@@ -6,9 +6,9 @@ import Container from "./Container";
 import Logo from "@/components/shared/Logo";
 
 const navItems = [
-  { label: "Work", href: "#projects" },
-  { label: "Experience", href: "#experience" },
   { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Work", href: "#projects" },
   { label: "Writing", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];

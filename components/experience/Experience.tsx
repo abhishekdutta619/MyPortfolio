@@ -10,7 +10,7 @@ export default function Experience() {
         <SectionHeading eyebrow="Experience" title="Six years, four roles, one throughline." />
 
         <div className="space-y-0">
-          {experience.map((role, i) => (
+          {experience.map((role) => (
             <div
               key={role.company}
               className="relative pl-8 md:pl-10 pb-14 last:pb-0 border-l border-border last:border-transparent"
@@ -49,7 +49,7 @@ export default function Experience() {
                 ))}
               </div>
 
-              {i === 0 && (
+              {role.current && (
                 <span className="inline-block mt-4 font-mono text-[10px] uppercase tracking-widest2 text-accent-teal border border-accent-teal/30 rounded-full px-2.5 py-1">
                   Current
                 </span>
