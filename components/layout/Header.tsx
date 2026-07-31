@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Container from "./Container";
-import { profile } from "@/lib/data/profile";
+import Logo from "@/components/shared/Logo";
 
 const navItems = [
   { label: "Work", href: "#projects" },
@@ -23,8 +23,7 @@ export default function Header() {
           href="#top"
           className="font-display text-sm font-medium tracking-wide text-text hover:text-accent-teal transition-colors"
         >
-          {profile.shortName}
-          <span className="text-accent-teal">.</span>
+          <Logo />
         </a>
 
         <nav className="hidden md:flex items-center gap-8">

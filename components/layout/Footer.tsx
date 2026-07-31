@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, FileDown } from "lucide-react";
 import Container from "./Container";
+import Logo from "@/components/shared/Logo";
 import { profile } from "@/lib/data/profile";
 
 export default function Footer() {
@@ -10,7 +11,7 @@ export default function Footer() {
       <Container className="py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
           <p className="font-display text-sm text-text">
-            {profile.name}
+            <Logo full />
           </p>
           <p className="text-xs text-text-faint mt-1">
             {profile.title} · Building scalable, accessible UI systems.

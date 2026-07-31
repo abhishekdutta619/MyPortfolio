@@ -1,6 +1,7 @@
 export const profile = {
   name: "Abhishek Kumar Dutta",
   shortName: "Abhishek",
+  brandName: "Abhishek Dutta", // used by the Logo component; full legal name stays in metadata/footer copyright
   title: "Front-End Engineer",
   eyebrow: "Front-End Engineer — 6+ Years",
   tagline: "I build interfaces that scale, and I can show you the numbers.",
