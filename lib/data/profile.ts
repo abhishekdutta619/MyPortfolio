@@ -1,19 +1,19 @@
 export const profile = {
   name: "Abhishek Kumar Dutta",
-  shortName: "AD", // used in the footer copyright and the "Let's talk" popup; full legal name stays in metadata
+  shortName: "AD",
   brandName: "Abhishek Dutta", // used by the Logo component; full legal name stays in metadata/footer copyright
   title: "Front-End Engineer",
-  eyebrow: "Front-End Engineer — 6+ Years",
+  yearsExperience: "6+",
   tagline: "I build interfaces that scale, and I can show you the numbers.",
   subhead:
     "Leading front-end architecture for cloud-native SaaS products — from performance budgets and accessibility to team mentorship and delivery.",
-  email: "abhishekdutta121091@gmail.com", 
-  phone: undefined as string | undefined, // set to a real number to show it in the "Let's talk" popup; left unset, the popup just omits that row
-  location: "Bilaspur, India",
+  email: "hello@abhishekdutta.dev", // placeholder — replace with real address
+  phone: "+918951920989", // shown formatted as +91 89519 20989 in the popup
+  location: "India",
   links: {
-    github: "https://github.com/abhishekdutta619", 
-    linkedin: "https://www.linkedin.com/in/abhishek-kumar-dutta-a6b4a386/", 
-    resumePdf: "/resume/abhishek-kumar-dutta-resume.pdf", 
+    github: "https://github.com/", // placeholder
+    linkedin: "https://linkedin.com/in/", // placeholder
+    resumePdf: "/resume/abhishek-kumar-dutta-resume.pdf",
   },
 };
 

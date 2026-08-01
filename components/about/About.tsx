@@ -1,6 +1,6 @@
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/layout/SectionHeading";
-import PhotoFrame from "@/components/shared/PhotoFrame";
+import PhotoFrame from "@/components/shared/AboutPhotoFrame";
 import Reveal from "@/components/shared/Reveal";
 
 const capabilities = [
@@ -17,13 +17,17 @@ export default function About() {
       <Container>
         <div className="grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20">
           <div>
-            <SectionHeading eyebrow="About" title="Six years of turning specs into shipped, scalable UI." />
             <Reveal delay={0.1}>
-              <PhotoFrame className="aspect-square w-full max-w-[220px]" iconSize={40} />
+              <PhotoFrame 
+                src="/images/headshot-about.png" 
+                className="aspect-square w-full max-w-[450px]" 
+                sizes="450px" 
+              />
             </Reveal>
           </div>
 
           <div className="space-y-6">
+            <SectionHeading eyebrow="About" title="Six years of turning specs into shipped, scalable UI." />
             <p className="text-text-muted leading-relaxed">
               I&apos;m a front-end engineer who builds cloud-ready, scalable web
               applications with React, Angular, and TypeScript — and who spends

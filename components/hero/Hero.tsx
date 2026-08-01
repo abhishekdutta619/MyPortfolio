@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Container from "@/components/layout/Container";
 import MetricChip from "@/components/shared/MetricChip";
-import PhotoFrame from "@/components/shared/PhotoFrame";
+import PhotoFrame from "@/components/shared/HeroPhotoFrame";
 import { profile, impactMetrics } from "@/lib/data/profile";
 
 export default function Hero() {
@@ -26,7 +26,7 @@ export default function Hero() {
               transition={{ duration: 0.5 }}
               className="font-mono text-xs uppercase tracking-widest2 text-accent-teal mb-6"
             >
-              {profile.eyebrow}
+              {profile.title} — {profile.yearsExperience} Years
             </motion.p>
 
             <motion.h1
@@ -78,7 +78,11 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="hidden lg:block"
           >
-            <PhotoFrame className="aspect-square w-full max-w-[320px] ml-auto" iconSize={72} />
+            <PhotoFrame
+              src="/images/headshot-hero.png"
+              className="aspect-square w-full max-w-[320px] ml-auto"
+              sizes="320px"
+            />
           </motion.div>
         </div>
 
