@@ -1,15 +1,21 @@
 "use client";
 
-// Note on what this actually does: this is a UX/decluttering pattern, not a
-// real privacy mechanism. Everything rendered here still ships in the page's
-// HTML/JS bundle -- it's exactly as visible to page-source viewers or
-// scrapers as it would be printed directly in the Contact section. What it
-// genuinely buys is a cleaner main page and a little friction against
-// casual/automated scraping, not real exposure control.
+// Note on what this actually does: this is a UX/decluttering + branding
+// pattern, not a real privacy mechanism. Everything rendered here still
+// ships in the page's HTML/JS bundle -- it's exactly as visible to
+// page-source viewers or scrapers as it would be printed directly in the
+// Contact section. What it genuinely buys is a cleaner main page and a
+// memorable, on-brand interaction.
 
 import { useEffect, useRef, RefObject } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { X, Mail, Phone, Github, Linkedin } from "lucide-react";
 import { profile } from "@/lib/data/profile";
+
+function formatPhone(phone: string): string {
+  const match = phone.match(/^\+91(\d{5})(\d{5})$/);
+  return match ? `+91 ${match[1]} ${match[2]}` : phone;
+}
 
 export default function ContactPopup({
   open,
@@ -21,6 +27,7 @@ export default function ContactPopup({
   triggerRef?: RefObject<HTMLElement | null>;
 }) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!open) return;
@@ -41,70 +48,110 @@ export default function ContactPopup({
     };
   }, [open, onClose, triggerRef]);
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" aria-hidden="true" />
-      <div
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="contact-popup-title"
-        tabIndex={-1}
-        onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-sm rounded-xl border border-border bg-surface p-6 outline-none shadow-xl"
-      >
-        <button
-          type="button"
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-[8vh] pb-8 overflow-y-auto"
           onClick={onClose}
-          aria-label="Close"
-          className="absolute top-4 right-4 text-text-muted hover:text-text transition-colors"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
         >
-          <X size={18} />
-        </button>
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" aria-hidden="true" />
 
-        <h2 id="contact-popup-title" className="font-display text-lg text-text mb-1">
-          Get in touch
-        </h2>
-        <p className="text-sm text-text-muted mb-5">Direct lines — no form needed.</p>
-
-        <div className="space-y-3">
-          <a
-            href={`mailto:${profile.email}`}
-            className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+          {/* The phone-frame treatment: drops down from off-screen on open. */}
+          <motion.div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-popup-title"
+            tabIndex={-1}
+            onClick={(e) => e.stopPropagation()}
+            initial={reduceMotion ? { opacity: 0 } : { y: "-120%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={reduceMotion ? { opacity: 0 } : { y: "-120%", opacity: 0 }}
+            transition={
+              reduceMotion
+                ? { duration: 0.15 }
+                : { type: "spring", damping: 22, stiffness: 220 }
+            }
+            className="relative w-full max-w-[300px] outline-none"
           >
-            <Mail size={16} className="text-accent-teal shrink-0" />
-            {profile.email}
-          </a>
+            {/* Phone bezel */}
+            <div className="relative bg-[#111318] rounded-[44px] p-3.5 border-2 border-[#2a2d35] shadow-2xl">
+              <div className="absolute right-[-2px] top-[110px] w-[3px] h-14 bg-[#2a2d35] rounded-r" />
+              <div className="absolute left-[-2px] top-[92px] w-[3px] h-9 bg-[#2a2d35] rounded-l" />
+              <div className="absolute left-[-2px] top-[136px] w-[3px] h-9 bg-[#2a2d35] rounded-l" />
 
-          {profile.phone && (
-            <a
-              href={`tel:${profile.phone}`}
-              className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
-            >
-              <Phone size={16} className="text-accent-teal shrink-0" />
-              {profile.phone}
-            </a>
-          )}
+              {/* Screen */}
+              <div className="relative bg-bg rounded-[32px] overflow-hidden pt-9 pb-6 px-5">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-[#111318] rounded-b-2xl" />
 
-          <a
-            href={profile.links.linkedin}
-            className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
-          >
-            <Linkedin size={16} className="text-accent-teal shrink-0" />
-            LinkedIn
-          </a>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  aria-label="Close"
+                  className="absolute top-4 right-4 text-text-muted hover:text-text transition-colors"
+                >
+                  <X size={18} />
+                </button>
 
-          <a
-            href={profile.links.github}
-            className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
-          >
-            <Github size={16} className="text-accent-teal shrink-0" />
-            GitHub
-          </a>
-        </div>
-      </div>
-    </div>
+                <h2
+                  id="contact-popup-title"
+                  className="font-display text-lg text-text mb-1 mt-2"
+                >
+                  Get in touch
+                </h2>
+                <p className="text-sm text-text-muted mb-6">
+                  Direct lines — no form needed.
+                </p>
+
+                <div className="space-y-3">
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+                  >
+                    <Mail size={16} className="text-accent-teal shrink-0" />
+                    <span className="break-all">{profile.email}</span>
+                  </a>
+
+                  {profile.phone && (
+                    <a
+                      href={`tel:${profile.phone}`}
+                      className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+                    >
+                      <Phone size={16} className="text-accent-teal shrink-0" />
+                      {formatPhone(profile.phone)}
+                    </a>
+                  )}
+
+                  <a
+                    href={profile.links.linkedin}
+                    className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+                  >
+                    <Linkedin size={16} className="text-accent-teal shrink-0" />
+                    LinkedIn
+                  </a>
+
+                  <a
+                    href={profile.links.github}
+                    className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+                  >
+                    <Github size={16} className="text-accent-teal shrink-0" />
+                    GitHub
+                  </a>
+                </div>
+
+                <div className="mt-7 flex justify-center">
+                  <div className="w-28 h-1 bg-border rounded-full" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
