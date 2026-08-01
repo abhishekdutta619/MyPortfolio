@@ -1,6 +1,7 @@
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/layout/SectionHeading";
 import MetricChip from "@/components/shared/MetricChip";
+import Reveal from "@/components/shared/Reveal";
 import { experience } from "@/lib/data/experience";
 
 export default function Experience() {
@@ -10,11 +11,15 @@ export default function Experience() {
         <SectionHeading eyebrow="Experience" title="Six years, four roles, one throughline." />
 
         <div className="space-y-0">
-          {experience.map((role) => (
-            <div
-              key={role.company}
-              className="relative pl-8 md:pl-10 pb-14 last:pb-0 border-l border-border last:border-transparent"
-            >
+          {experience.map((role, i) => {
+            const isLast = i === experience.length - 1;
+            return (
+              <Reveal key={role.company}>
+                <div
+                  className={`relative pl-8 md:pl-10 border-l border-border ${
+                    isLast ? "pb-0 border-transparent" : "pb-14"
+                  }`}
+                >
               {/* timeline node */}
               <span
                 className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full ${
@@ -54,8 +59,10 @@ export default function Experience() {
                   Current
                 </span>
               )}
-            </div>
-          ))}
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </Container>
     </section>

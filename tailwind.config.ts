@@ -17,7 +17,7 @@ const config: Config = {
         text: {
           DEFAULT: "#EDEFF2",
           muted: "#8891A0",
-          faint: "#565E6B",
+          faint: "#78818D",   // WCAG AA fix — see above
         },
         accent: {
           teal: "#52C7B8",
@@ -47,7 +47,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 
 export default config;

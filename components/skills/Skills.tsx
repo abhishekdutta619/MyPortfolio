@@ -1,5 +1,6 @@
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/layout/SectionHeading";
+import Reveal from "@/components/shared/Reveal";
 import { whatIBuild, skillGroups } from "@/lib/data/skills";
 
 export default function Skills() {
@@ -9,13 +10,12 @@ export default function Skills() {
         <SectionHeading eyebrow="What I Build" title="Value first, tech stack second." />
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 mb-16">
-          {whatIBuild.map((item) => (
-            <div
-              key={item}
-              className="rounded-lg border border-border bg-surface px-5 py-4 text-sm text-text"
-            >
-              {item}
-            </div>
+          {whatIBuild.map((item, i) => (
+            <Reveal key={item} delay={i * 0.05}>
+              <div className="rounded-lg border border-border bg-surface px-5 py-4 text-sm text-text">
+                {item}
+              </div>
+            </Reveal>
           ))}
         </div>
 

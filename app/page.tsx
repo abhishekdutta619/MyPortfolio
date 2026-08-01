@@ -6,6 +6,7 @@ import Skills from "@/components/skills/Skills";
 import Experience from "@/components/experience/Experience";
 import Projects from "@/components/projects/Projects";
 import Testimonials from "@/components/testimonials/Testimonials";
+import BlogPreview from "@/components/blog/BlogPreview";
 import Contact from "@/components/contact/Contact";
 
 export default function Home() {
@@ -19,10 +20,8 @@ export default function Home() {
         <Experience />
         <Projects />
         <Testimonials />
+        <BlogPreview />
         <Contact />
-        {/*
-          Phase 4 adds: Blog (#blog)
-        */}
       </main>
       <Footer />
     </>
