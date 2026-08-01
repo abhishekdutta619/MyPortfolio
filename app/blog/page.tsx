@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ArrowUpRight } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/layout/Container";
-import { getAllPosts, formatDate } from "@/lib/blog";
+import { getUnifiedPosts, formatDate } from "@/lib/blog";
 import { profile } from "@/lib/data/profile";
 
 export const metadata: Metadata = {
@@ -11,8 +12,8 @@ export const metadata: Metadata = {
   description: "Notes on front-end architecture, accessibility, and building things properly.",
 };
 
-export default function BlogIndex() {
-  const posts = getAllPosts();
+export default async function BlogIndex() {
+  const posts = await getUnifiedPosts();
 
   return (
     <>
@@ -27,17 +28,44 @@ export default function BlogIndex() {
           </h1>
 
           <div className="space-y-8">
-            {posts.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-                <p className="font-mono text-xs text-text-faint mb-1.5">
-                  {formatDate(post.date)}
-                </p>
-                <h2 className="font-display text-xl text-text mb-2 group-hover:text-accent-teal transition-colors">
-                  {post.title}
-                </h2>
-                <p className="text-sm text-text-muted leading-relaxed">{post.excerpt}</p>
-              </Link>
-            ))}
+            {posts.map((post) =>
+              post.external ? (
+                <a
+                  key={post.slug}
+                  href={post.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                >
+                  <div className="flex items-center gap-3 mb-1.5">
+                    <p className="font-mono text-xs text-text-faint">{formatDate(post.date)}</p>
+                    <span className="flex items-center gap-1 text-[10px] uppercase tracking-widest2 text-text-faint">
+                      dev.to <ArrowUpRight size={12} />
+                    </span>
+                  </div>
+                  <h2 className="font-display text-xl text-text mb-2 group-hover:text-accent-teal transition-colors">
+                    {post.title}
+                  </h2>
+                  <p className="text-sm text-text-muted leading-relaxed">{post.excerpt}</p>
+                </a>
+              ) : (
+                <Link key={post.slug} href={post.href} className="group block">
+                  <p className="font-mono text-xs text-text-faint mb-1.5">
+                    {formatDate(post.date)}
+                  </p>
+                  <h2 className="font-display text-xl text-text mb-2 group-hover:text-accent-teal transition-colors">
+                    {post.title}
+                  </h2>
+                  <p className="text-sm text-text-muted leading-relaxed">{post.excerpt}</p>
+                </Link>
+              )
+            )}
+
+            {posts.length === 0 && (
+              <p className="text-sm text-text-muted">
+                No posts yet — check back soon.
+              </p>
+            )}
           </div>
         </Container>
       </main>

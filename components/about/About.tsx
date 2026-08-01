@@ -1,5 +1,7 @@
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/layout/SectionHeading";
+import PhotoFrame from "@/components/shared/PhotoFrame";
+import Reveal from "@/components/shared/Reveal";
 
 const capabilities = [
   "Front-end architecture",
@@ -14,7 +16,12 @@ export default function About() {
     <section id="about" className="py-24 md:py-32 border-t border-border">
       <Container>
         <div className="grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20">
-          <SectionHeading eyebrow="About" title="Six years of turning specs into shipped, scalable UI." />
+          <div>
+            <SectionHeading eyebrow="About" title="Six years of turning specs into shipped, scalable UI." />
+            <Reveal delay={0.1}>
+              <PhotoFrame className="aspect-square w-full max-w-[220px]" iconSize={40} />
+            </Reveal>
+          </div>
 
           <div className="space-y-6">
             <p className="text-text-muted leading-relaxed">
