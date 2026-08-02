@@ -9,7 +9,7 @@
 
 import { useEffect, useRef, RefObject } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { X, Mail, Phone, Github, Linkedin } from "lucide-react";
+import { X, Mail, Phone, Github, Linkedin, MapPin } from "lucide-react";
 import { profile } from "@/lib/data/profile";
 
 function formatPhone(phone: string): string {
@@ -105,48 +105,60 @@ export default function ContactPopup({
                 <div className="flex-1 flex flex-col justify-center">
                   <h2
                     id="contact-popup-title"
-                    className="font-display text-lg text-text mb-1"
+                    className="font-display text-2xl text-text mb-2"
                   >
                     Get in touch
                   </h2>
-                  <p className="text-sm text-text-muted mb-6">
+                  <p className="text-base text-text-muted mb-5">
                     Direct lines — no form needed.
                   </p>
 
-                  <div className="space-y-3">
+                  <div className="inline-flex items-start gap-2 self-start rounded-2xl border border-accent-teal/30 bg-accent-teal/10 px-3.5 py-2.5 mb-8">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-teal shrink-0 mt-1.5" />
+                    <span className="text-xs text-accent-teal font-medium">
+                      {profile.availability}
+                    </span>
+                  </div>
+
+                  <div className="space-y-5">
                     <a
                       href={`mailto:${profile.email}`}
-                      className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+                      className="flex items-center gap-4 text-base text-text hover:text-accent-teal transition-colors"
                     >
-                      <Mail size={16} className="text-accent-teal shrink-0" />
+                      <Mail size={20} className="text-accent-teal shrink-0" />
                       <span className="break-all">{profile.email}</span>
                     </a>
 
                     {profile.phone && (
                       <a
                         href={`tel:${profile.phone}`}
-                        className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+                        className="flex items-center gap-4 text-base text-text hover:text-accent-teal transition-colors"
                       >
-                        <Phone size={16} className="text-accent-teal shrink-0" />
+                        <Phone size={20} className="text-accent-teal shrink-0" />
                         {formatPhone(profile.phone)}
                       </a>
                     )}
 
                     <a
                       href={profile.links.linkedin}
-                      className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+                      className="flex items-center gap-4 text-base text-text hover:text-accent-teal transition-colors"
                     >
-                      <Linkedin size={16} className="text-accent-teal shrink-0" />
+                      <Linkedin size={20} className="text-accent-teal shrink-0" />
                       LinkedIn
                     </a>
 
                     <a
                       href={profile.links.github}
-                      className="flex items-center gap-3 text-sm text-text hover:text-accent-teal transition-colors"
+                      className="flex items-center gap-4 text-base text-text hover:text-accent-teal transition-colors"
                     >
-                      <Github size={16} className="text-accent-teal shrink-0" />
+                      <Github size={20} className="text-accent-teal shrink-0" />
                       GitHub
                     </a>
+
+                    <div className="flex items-center gap-4 text-base text-text">
+                      <MapPin size={20} className="text-accent-teal shrink-0" />
+                      {profile.location}, {profile.country}
+                    </div>
                   </div>
                 </div>
 

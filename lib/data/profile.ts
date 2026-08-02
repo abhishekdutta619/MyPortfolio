@@ -7,12 +7,15 @@ export const profile = {
   tagline: "I build interfaces that scale, and I can show you the numbers.",
   subhead:
     "Leading front-end architecture for cloud-native SaaS products — from performance budgets and accessibility to team mentorship and delivery.",
-  email: "hello@abhishekdutta.dev", // placeholder — replace with real address
+  availability:
+    "Open to Front-End Architect and Technical Lead roles at cloud-native SaaS companies.",
+  email: "abhishekdutta121091@gmail.com",
   phone: "+918951920989", // shown formatted as +91 89519 20989 in the popup
-  location: "India",
+  location: "Bilaspur",
+  country: "India",
   links: {
-    github: "https://github.com/", // placeholder
-    linkedin: "https://linkedin.com/in/", // placeholder
+    github: "https://github.com/abhishekdutta619",
+    linkedin: "https://www.linkedin.com/in/abhishek-kumar-dutta-a6b4a386/",
     resumePdf: "/resume/abhishek-kumar-dutta-resume.pdf",
   },
 };

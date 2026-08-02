@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { Mail, Github, Linkedin, Send } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, Send } from "lucide-react";
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/layout/SectionHeading";
 import { profile } from "@/lib/data/profile";
@@ -45,8 +45,7 @@ export default function Contact() {
           <div>
             <SectionHeading eyebrow="Contact" title="Let's build something reliable." />
             <p className="text-text-muted leading-relaxed mb-8 max-w-sm">
-              Open to Front-End Architect and Technical Lead roles at
-              cloud-native SaaS companies. Reach out directly, or use the form.
+              {profile.availability} Reach out directly, or use the form.
             </p>
 
             <div className="space-y-3">
@@ -68,6 +67,9 @@ export default function Contact() {
               >
                 <Github size={16} /> GitHub
               </a>
+              <div className="flex items-center gap-3 text-sm text-text-muted">
+                <MapPin size={16} /> {profile.location}, {profile.country}
+              </div>
             </div>
           </div>
 
