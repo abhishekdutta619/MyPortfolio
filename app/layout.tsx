@@ -4,8 +4,43 @@ import { profile } from "@/lib/data/profile";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: `${profile.name} — ${profile.title}`,
+  metadataBase: new URL(profile.siteUrl),
+  title: {
+    default: `${profile.name} — ${profile.title}`,
+    template: `%s — ${profile.brandName}`,
+  },
   description: profile.subhead,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    url: profile.siteUrl,
+    siteName: `${profile.brandName}.`,
+    title: `${profile.name} — ${profile.title}`,
+    description: profile.subhead,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — ${profile.title}`,
+    description: profile.subhead,
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.title,
+  url: profile.siteUrl,
+  email: profile.email,
+  sameAs: [profile.links.linkedin, profile.links.github].filter(
+    (url) => !url.endsWith("/in/") && !url.endsWith(".com/") // skip unfilled placeholder links
+  ),
 };
 
 export default function RootLayout({
@@ -15,7 +50,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

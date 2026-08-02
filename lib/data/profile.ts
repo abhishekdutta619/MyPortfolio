@@ -2,6 +2,10 @@ export const profile = {
   name: "Abhishek Kumar Dutta",
   shortName: "AD",
   brandName: "Abhishek Dutta", // used by the Logo component; full legal name stays in metadata/footer copyright
+  // Update this once a custom domain is connected in Vercel (Project Settings -> Domains),
+  // then update it here too -- everything SEO-related (canonical URLs, sitemap,
+  // JSON-LD, OG image resolution) derives from this one value.
+  siteUrl: "https://abhishekkumardutta.vercel.app",
   title: "Front-End Engineer",
   yearsExperience: "6+",
   tagline: "I build interfaces that scale, and I can show you the numbers.",

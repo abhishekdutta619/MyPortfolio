@@ -5,11 +5,11 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/layout/Container";
 import { getUnifiedPosts, formatDate } from "@/lib/blog";
-import { profile } from "@/lib/data/profile";
 
 export const metadata: Metadata = {
-  title: `Writing — ${profile.name}`,
+  title: "Writing",
   description: "Notes on front-end architecture, accessibility, and building things properly.",
+  alternates: { canonical: "/blog" },
 };
 
 export default async function BlogIndex() {
