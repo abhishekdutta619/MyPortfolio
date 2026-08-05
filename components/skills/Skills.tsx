@@ -1,6 +1,7 @@
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/layout/SectionHeading";
 import Reveal from "@/components/shared/Reveal";
+import SkillIcon from "@/components/shared/SkillIcon";
 import { whatIBuild, skillGroups } from "@/lib/data/skills";
 
 export default function Skills() {
@@ -28,10 +29,11 @@ export default function Skills() {
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <span
-                    key={item}
-                    className="rounded-md bg-surface border border-border px-2.5 py-1 text-xs text-text-muted"
+                    key={item.name}
+                    className="flex items-center gap-1.5 rounded-md bg-surface border border-border px-2.5 py-1 text-xs text-text-muted"
                   >
-                    {item}
+                    {(item.icon || item.svg) && <SkillIcon item={item} />}
+                    {item.name}
                   </span>
                 ))}
               </div>

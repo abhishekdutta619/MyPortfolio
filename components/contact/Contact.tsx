@@ -10,13 +10,13 @@ import { profile } from "@/lib/data/profile";
 // submissions to you with zero backend code. Sign up, grab your access key,
 // and replace the placeholder below. Until then, submissions will fail
 // gracefully and the user is shown the direct mailto: link instead.
-const WEB3FORMS_ACCESS_KEY = "REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY";
+const WEB3FORMS_ACCESS_KEY = "92576832-3e56-4c7a-a855-e2d70e151230";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
-  const configured = WEB3FORMS_ACCESS_KEY !== "REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY";
+  const configured = WEB3FORMS_ACCESS_KEY !== "92576832-3e56-4c7a-a855-e2d70e151230";
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
