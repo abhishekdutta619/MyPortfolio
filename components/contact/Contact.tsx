@@ -88,6 +88,20 @@ export default function Contact() {
                 />
               </div>
               <div>
+                <label htmlFor="phone" className="block text-xs text-text-muted mb-1.5">
+                  Phone <span className="text-text-faint">(optional)</span>
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  className="w-full rounded-md border border-border bg-surface px-3.5 py-2.5 text-sm text-text outline-none focus:border-accent-teal transition-colors"
+                />
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
                 <label htmlFor="email" className="block text-xs text-text-muted mb-1.5">
                   Email
                 </label>
@@ -96,6 +110,18 @@ export default function Contact() {
                   name="email"
                   type="email"
                   required
+                  className="w-full rounded-md border border-border bg-surface px-3.5 py-2.5 text-sm text-text outline-none focus:border-accent-teal transition-colors"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="company" className="block text-xs text-text-muted mb-1.5">
+                  Company <span className="text-text-faint">(optional)</span>
+                </label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
                   className="w-full rounded-md border border-border bg-surface px-3.5 py-2.5 text-sm text-text outline-none focus:border-accent-teal transition-colors"
                 />
               </div>
