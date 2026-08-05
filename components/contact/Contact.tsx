@@ -16,8 +16,8 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
-  const configured = WEB3FORMS_ACCESS_KEY !== "92576832-3e56-4c7a-a855-e2d70e151230";
-
+  const configured = WEB3FORMS_ACCESS_KEY.length > 0;
+  
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
