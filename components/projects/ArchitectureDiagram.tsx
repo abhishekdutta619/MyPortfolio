@@ -2,7 +2,16 @@
 
 import { useState } from "react";
 
-const layers = [
+export interface ArchitectureLayer {
+  id: string;
+  label: string;
+  detail: string;
+}
+
+// Kept as the default so this component still renders sensibly if it's
+// ever used without explicit props — but FeaturedProject.tsx currently
+// always passes layers/heading explicitly for whichever project is featured.
+const defaultLayers: ArchitectureLayer[] = [
   {
     id: "client",
     label: "Client",
@@ -23,13 +32,21 @@ const layers = [
   },
 ];
 
-export default function ArchitectureDiagram() {
+interface ArchitectureDiagramProps {
+  heading?: string;
+  layers?: ArchitectureLayer[];
+}
+
+export default function ArchitectureDiagram({
+  heading = "Architecture — hover or tab through a layer",
+  layers = defaultLayers,
+}: ArchitectureDiagramProps) {
   const [active, setActive] = useState(0);
 
   return (
     <div className="rounded-lg border border-border bg-bg/40 p-5">
       <p className="font-mono text-[11px] uppercase tracking-widest2 text-text-faint mb-4">
-        Architecture — hover or tab through a layer
+        {heading}
       </p>
       <div className="flex items-center gap-2">
         {layers.map((layer, i) => (

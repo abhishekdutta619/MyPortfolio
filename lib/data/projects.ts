@@ -16,15 +16,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "kanbanflow",
-    title: "KanbanFlow",
-    category: "Full-Stack SaaS · Enterprise",
+    slug: "simply-dwell-design",
+    title: "Simply Dwell Design",
+    category: "Content Platform · Headless CMS · Full-Stack",
     description:
-      "A team task manager built to hold up under real usage — drag-and-drop boards, role-based permissions, and an activity log that survives audits, not just demos.",
-    stack: ["React", "TypeScript", "NestJS", "PostgreSQL", "MongoDB"],
-    badges: ["99/100 Lighthouse", "-70% bundle size"],
-    github: "https://github.com/", // placeholder
-    demo: "https://example.com/", // placeholder
+      "A home-decor content site with a from-scratch, no-code publishing pipeline — a custom GitHub OAuth flow running as Cloudflare edge functions, a hand-built markdown CMS, and content that goes from draft to live in about two minutes with zero hosting cost.",
+    stack: ["Astro", "React", "TypeScript", "Cloudflare Pages Functions", "Vitest"],
+    badges: ["~2 min publish", "$0/mo hosting"],
+    // No `github` field: source is private, so the Code link is omitted
+    // rather than pointed at a 404.
+    demo: "https://www.simplydwelldesign.com/", // verify this resolves before launch
     featured: true,
   },
   {

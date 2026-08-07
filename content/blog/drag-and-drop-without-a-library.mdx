@@ -1,39 +1,46 @@
 ---
-title: "Building drag-and-drop without a library"
-date: "2026-06-18"
-excerpt: "The kanban demo on this site's KanbanFlow case study doesn't use react-dnd or dnd-kit. Here's what the native HTML5 drag-and-drop API actually gets you — and what it costs."
+title: "Sequencing an animation without a library"
+date: "2026-08-01"
+excerpt: "The publish-pipeline demo on this site's Simply Dwell Design case study doesn't use framer-motion or a state machine library. Here's what setTimeout and a bit of state actually gets you — and what it costs."
 tags: ["React", "Accessibility", "DX"]
 ---
 
-The drag-and-drop board in this site's KanbanFlow case study isn't wired up with react-dnd, dnd-kit, or any other library. It's about 60 lines of the native HTML5 drag-and-drop API and a bit of React state. That was a deliberate choice, not a shortcut — and it's worth being honest about what you get and what you give up.
+The publish-pipeline demo in this site's Simply Dwell Design case study isn't wired up with framer-motion, react-spring, or a state machine library like xstate. It's a stage index, a `setTimeout` chain, and a cleanup function. That was a deliberate choice, not a shortcut — and it's worth being honest about what you get and what you give up.
 
-## What the native API actually looks like
+## What the sequencing actually looks like
 
-Three event handlers do all the work:
+One recursive `setTimeout` does all the work:
 
 ```tsx
-<div draggable onDragStart={() => setDragging({ id: task.id, from: columnKey })}>
-  {task.text}
-</div>
+function runPipeline() {
+  if (running) return;
+  setRunning(true);
+  setActiveIndex(0);
 
-<div
-  onDragOver={(e) => e.preventDefault()} // required, or onDrop never fires
-  onDrop={() => handleDrop(columnKey)}
->
-  {/* column contents */}
-</div>
+  let i = 0;
+  const step = () => {
+    i += 1;
+    if (i < stages.length) {
+      setActiveIndex(i);
+      timeoutRef.current = setTimeout(step, STEP_DELAY_MS);
+    } else {
+      setRunning(false);
+    }
+  };
+  timeoutRef.current = setTimeout(step, STEP_DELAY_MS);
+}
 ```
 
-`onDragOver` calling `preventDefault()` trips people up the first time — without it, the browser's default behavior is to reject the drop entirely. Once that's in place, the rest is just state: track which item is being dragged and where it came from, then move it on drop.
+The part that's easy to get wrong: the timeout has to be cleared on unmount, or a component that's already gone can still try to call `setState` a beat later. A `useEffect` with a cleanup function that calls `clearTimeout` on whatever's currently in the ref handles it.
 
 ## Why not just reach for a library
 
-For a lot of production kanban boards, I would. Libraries like dnd-kit solve real problems this approach doesn't touch: touch-device support that actually feels good, sortable reordering *within* a column (not just moving between columns), and — the big one — keyboard accessibility.
+For anything with more than one animated property, or anything that needs to interrupt and reverse mid-sequence, I would. Framer Motion's orchestration and stagger primitives solve real problems this approach doesn't touch — springs, gesture-driven interruption, exit animations that actually wait for each other.
 
-But for a self-contained demo whose entire job is to illustrate a state-management pattern, pulling in a drag-and-drop library is arguably solving a problem the demo doesn't have, at the cost of a dependency someone reading the code now has to understand too. The native API, for this specific case, is more legible, not less capable-for-purpose.
+But for a self-contained demo whose entire job is to illustrate a linear pipeline — draft, auth, function, commit, rebuild, live — pulling in an animation library is arguably solving a problem the demo doesn't have. Six sequential `setState` calls are more legible to someone reading the component for the first time than a dependency's config API, for this specific case.
 
 ## The part I won't paper over
 
-The demo on this site is **not keyboard-operable**. That's a real accessibility gap, and it's called out directly in the component's code comments rather than left for someone to discover. Full accessible drag-and-drop — arrow-key reordering, `aria-live` announcements when an item moves — is a legitimate feature, not a quick addition, and it's exactly the kind of thing a library like dnd-kit gets right that a hand-rolled version usually doesn't, unless you deliberately build it.
+The demo on this site can't be stopped once it's running — the "Publish" button just disables itself until the sequence finishes. There's no cancel, no interrupt, no way to jump ahead. That's a real, deliberate limitation for a demo, not an oversight, but it's the kind of shortcut that would be a genuine bug in anything real: a user who changes their mind mid-action needs an escape hatch, and this doesn't have one.
 
 The lesson isn't "avoid libraries." It's that every dependency decision is really a decision about which problems you're choosing to solve yourself, and which you're borrowing a solution for — and that choice should be visible, not assumed.

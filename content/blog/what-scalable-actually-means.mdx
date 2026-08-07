@@ -1,6 +1,6 @@
 ---
 title: "What \"scalable\" actually means in front-end work"
-date: "2026-05-02"
+date: "2026-08-08"
 excerpt: "It's the most overused word on every front-end résumé, including mine. Here's a more concrete definition than \"it doesn't break under load.\""
 tags: ["Architecture", "Front-End"]
 ---
@@ -17,7 +17,7 @@ That reframes it as an engineering-process property, not a performance one — a
 
 **Design tokens over hardcoded values.** This site's own Tailwind config is a small example: colors, spacing, and type scale live in one place. Changing the accent color site-wide is a one-line edit, not a find-and-replace across forty components. That's the entire point of a token system — it's not about looking consistent, it's about the *cost of changing your mind* staying low.
 
-**State that doesn't leak.** The kanban demo on the [KanbanFlow case study](/#projects) keeps drag state local to one component instead of threading it through global state or prop-drilling it three levels deep. Small example, same principle: state should live as close as possible to where it's used, so a change in one part of the UI doesn't require understanding five other parts to reason about safely.
+**State that doesn't leak.** The publish-pipeline demo on the [Simply Dwell Design case study](/#projects) keeps its stage index and running flag local to one component instead of threading them through global state or prop-drilling them three levels deep. Small example, same principle: state should live as close as possible to where it's used, so a change in one part of the UI doesn't require understanding five other parts to reason about safely.
 
 ## The honest failure mode
 

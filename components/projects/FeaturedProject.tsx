@@ -1,7 +1,31 @@
 import { Github, ExternalLink } from "lucide-react";
 import { projects } from "@/lib/data/projects";
-import ArchitectureDiagram from "./ArchitectureDiagram";
-import KanbanSandbox from "./KanbanSandbox";
+import ArchitectureDiagram, { type ArchitectureLayer } from "./ArchitectureDiagram";
+import PublishPipelineSandbox from "./PublishPipelineSandbox";
+
+// The two right-column widgets below are hand-built for whichever project
+// is currently featured — they aren't driven by projects.ts. If the
+// featured project changes again, these need to be swapped along with it.
+const architectureLayers: ArchitectureLayer[] = [
+  {
+    id: "editor",
+    label: "Editor",
+    detail:
+      "React admin app. Authenticates via GitHub OAuth, then submits the post as markdown + frontmatter.",
+  },
+  {
+    id: "function",
+    label: "Function",
+    detail:
+      "Cloudflare Pages Function validates the token and writes the file straight to the repo via GitHub's API.",
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    detail:
+      "Commit lands on main. Cloudflare Pages detects it and rebuilds the static site automatically.",
+  },
+];
 
 export default function FeaturedProject() {
   const project = projects.find((p) => p.featured);
@@ -65,8 +89,11 @@ export default function FeaturedProject() {
         </div>
 
         <div className="space-y-5">
-          <ArchitectureDiagram />
-          <KanbanSandbox />
+          <ArchitectureDiagram
+            heading="Architecture — hover or tab through a stage"
+            layers={architectureLayers}
+          />
+          <PublishPipelineSandbox />
         </div>
       </div>
     </div>
