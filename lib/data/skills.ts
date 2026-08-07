@@ -37,7 +37,7 @@ export const whatIBuild = [
   "Design systems",
   "Accessible UI (WCAG)",
   "Performance-tuned apps",
-  "Cloud-ready SaaS products",
+  "Cloud-Native Enterprise Products",
 ] as const;
 
 export interface SkillItem {

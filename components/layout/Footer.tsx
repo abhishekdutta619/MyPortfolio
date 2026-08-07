@@ -14,7 +14,7 @@ export default function Footer() {
             <Logo full />
           </p>
           <p className="text-xs text-text-faint mt-1">
-            {profile.title} · Building scalable, accessible UI systems.
+            {profile.title} · Building scalable, enterprise-ready web systems.
           </p>
         </div>
 
@@ -42,6 +42,9 @@ export default function Footer() {
           </a>
           <a
             href={profile.links.resumePdf}
+            download="Abhishek_Kumar_Dutta_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Download résumé"
             className="flex items-center gap-1.5 text-text-muted hover:text-accent-teal transition-colors"
           >
@@ -51,7 +54,7 @@ export default function Footer() {
         </div>
 
         <p className="text-xs text-text-faint">
-          © {year} {profile.name}. Built with Next.js.
+          © {year} {profile.name}. All rights reserved.
         </p>
       </Container>
     </footer>

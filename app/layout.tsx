@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
   title: {
-    default: `${profile.name} — ${profile.title}`,
+    default: `${profile.name} | ${profile.title}`,
     template: `%s — ${profile.brandName}`,
   },
   description: profile.subhead,
@@ -25,11 +25,20 @@ export const metadata: Metadata = {
     siteName: `${profile.brandName}.`,
     title: `${profile.name} — ${profile.title}`,
     description: profile.subhead,
+    images: [
+      {
+        url: `${profile.siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: `${profile.name} — ${profile.title}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${profile.name} — ${profile.title}`,
     description: profile.subhead,
+    images: [`${profile.siteUrl}/og-image.png`],
   },
 };
 
@@ -40,6 +49,20 @@ const personJsonLd = {
   jobTitle: profile.title,
   url: profile.siteUrl,
   email: profile.email,
+  knowsAbout: [
+    "Full-Stack Development",
+    "UI Architecture",
+    "React",
+    "TypeScript",
+    "Angular",
+    "Node.js",
+    "Next.js",
+    "Performance Optimization",
+    "Accessibility",
+    "Cloud-Native Applications",
+    "SaaS Platforms",
+    "Enterprise Systems"
+  ],
   sameAs: [profile.links.linkedin, profile.links.github].filter(
     (url) => !url.endsWith("/in/") && !url.endsWith(".com/") // skip unfilled placeholder links
   ),

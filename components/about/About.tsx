@@ -29,19 +29,22 @@ export default function About() {
           <div className="space-y-6">
             <SectionHeading eyebrow="About" title="Six years of turning specs into shipped, scalable UI." />
             <p className="text-text-muted leading-relaxed">
-              I&apos;m a front-end engineer who builds cloud-ready, scalable web
-              applications with React, Angular, and TypeScript — and who spends
-              as much time on how a codebase stays healthy as on what ships next.
-              That means owning front-end architecture, running code reviews that
-              actually catch problems, and driving sprint planning that holds up
-              under real deadlines.
+              I&apos;m a software engineer who builds scalable, 
+              enterprise-grade web applications across the full 
+              stack with React, Angular, TypeScript, and Node.js, 
+              Spending as much time on code health and data flow 
+              as on what ships next. That means owning architectural 
+              decisions, running code reviews that catch systemic bugs, 
+              and driving sprint planning that holds up under real-world 
+              enterprise deadlines.
             </p>
             <p className="text-text-muted leading-relaxed">
-              I work closely with product managers to break epics into work that
-              ships on time without quietly accumulating technical debt. Strong
-              on performance optimization, accessibility, and reusable UI
-              systems — the parts of front-end work that don&apos;t show up in a
-              demo but decide whether a product holds up a year later.
+              I work closely with product managers and cross-functional 
+              teams to break complex requirements into reliable, shippable 
+              features. From performance budgets and database efficiency to 
+              WCAG accessibility and team mentorship, I focus on the 
+              structural foundations that ensure a product scales gracefully 
+              over years, not just months.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-2">

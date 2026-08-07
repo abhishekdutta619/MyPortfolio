@@ -6,13 +6,13 @@ export const profile = {
   // then update it here too -- everything SEO-related (canonical URLs, sitemap,
   // JSON-LD, OG image resolution) derives from this one value.
   siteUrl: "https://abhishekkumardutta.vercel.app",
-  title: "Front-End Engineer",
+  title: "Senior Software Engineer & UI Architect",
   yearsExperience: "6+",
   tagline: "I build interfaces that scale, and I can show you the numbers.",
   subhead:
-    "Leading front-end architecture for cloud-native SaaS products — from performance budgets and accessibility to team mentorship and delivery.",
+    "Leading scalable UI and full-stack architecture for enterprise SaaS and cloud platforms — from performance budgets and accessibility to team mentorship and delivery.",
   availability:
-    "Open to Front-End Architect and Technical Lead roles at cloud-native SaaS companies.",
+    "Open to Senior Full-Stack, UI Architect, and Technical Lead roles across product-driven MNCs and enterprise platforms.",
   email: "abhishekdutta121091@gmail.com",
   phone: "+918951920989", // shown formatted as +91 89519 20989 in the popup
   location: "Bilaspur",
