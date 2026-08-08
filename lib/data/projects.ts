@@ -40,14 +40,16 @@ export const projects: Project[] = [
     demo: "https://example.com/", // placeholder
   },
   {
-    slug: "expense-tracker",
-    title: "Expense Tracker",
-    category: "Personal Finance — Web App",
+    slug: "cloudsuite",
+    title: "CloudSuite",
+    category: "Multi-Tenant SaaS Platform",
     description:
-      "A personal finance tracker with category filtering and chart-based visualization — built to make a month of spending legible at a glance, not just logged.",
-    stack: ["React", "Chart.js", "Node.js"],
-    badges: [],
-    github: "https://github.com/", // placeholder
-    demo: "https://example.com/", // placeholder
+      "A multi-tenant SaaS platform built around database-enforced tenant isolation (Postgres Row-Level Security, connection-pool-safe via transaction-scoped session variables), subscription billing, and a modular \"chassis\" architecture that lets new customer-facing products plug in without touching core infrastructure.",
+    stack: ["Next.js", "NestJS", "PostgreSQL", "Drizzle", "Turborepo"],
+    badges: ["Row-Level Security", "In active development"],
+    github: "https://github.com/abhishekdutta619/cloudsuite-monorepo",
+    // No demo -- the project's own roadmap (in its README) has this at
+    // Phase 1 of 7, "in progress." Not linking a live demo that doesn't
+    // exist rather than pointing to something fake or dead.
   },
 ];
