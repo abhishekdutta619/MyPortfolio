@@ -18,7 +18,7 @@ export default function Projects() {
         <Reveal>
           <FeaturedProject />
         </Reveal>
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {rest.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.08}>
               <ProjectCard project={p} />

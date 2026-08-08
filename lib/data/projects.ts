@@ -52,4 +52,17 @@ export const projects: Project[] = [
     // Phase 1 of 7, "in progress." Not linking a live demo that doesn't
     // exist rather than pointing to something fake or dead.
   },
+  {
+    slug: "sustainable-marketplace",
+    title: "Sustainable Marketplace",
+    category: "Multi-Vendor E-Commerce",
+    description:
+      "A multi-vendor marketplace with a sustainability layer (eco scores, carbon tracking, green rewards) and an AI layer (smart search, eco-scoring, shopping assistant) built on top. Solo build, staged across three independently-demoable cut lines: MVP, sustainability features, then AI.",
+    stack: ["Next.js", "NestJS", "PostgreSQL", "pgvector", "Prisma", "Redis"],
+    badges: ["Phase 0 — Planning"],
+    github: "https://github.com/abhishekdutta619/sustainable-marketplace",
+    // No demo -- per its own README, this is at Phase 0 (Planning &
+    // Architecture) of a 3-phase roadmap. Not linking a live URL that
+    // doesn't exist.
+  },
 ];

@@ -10,6 +10,19 @@ export default function ProjectCard({ project }: { project: Project }) {
         {project.description}
       </p>
 
+      {project.badges.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.badges.map((b) => (
+            <span
+              key={b}
+              className="font-mono text-[10px] rounded-full border border-accent-amber/30 text-accent-amber px-2 py-0.5"
+            >
+              {b}
+            </span>
+          ))}
+        </div>
+      )}
+
       <div className="flex flex-wrap gap-1.5 mb-4">
         {project.stack.map((s) => (
           <span
