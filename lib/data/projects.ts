@@ -1,6 +1,6 @@
-// PLACEHOLDER CONTENT — confirmed earlier in planning (see README).
+// real projects (real repos, real architecture), all honestly marked as
 // Structure/layout/interaction patterns are real; the specific numbers,
-// links, and product details are not. Replace before launch.
+
 
 export interface Project {
   slug: string;
@@ -30,14 +30,16 @@ export const projects: Project[] = [
   },
   {
     slug: "momentlog",
-    title: "MomentLog",
-    category: "Daily Journal — Web App",
+    title: "MomentLog AI",
+    category: "AI Personal Journal",
     description:
-      "A minimal daily journaling app focused on responsive layout and rich-text state handling — fast enough to use every day without friction.",
-    stack: ["React", "Node.js", "MongoDB"],
-    badges: [],
-    github: "https://github.com/", // placeholder
-    demo: "https://example.com/", // placeholder
+      "An AI-powered journal and life-assistant platform. Moments (the core data layer) accumulate over time, and a background AI worker turns them into a searchable personal memory system; semantic search, auto-summaries, mood/task/goal tracking layered on top. A journal save returns immediately; AI processing runs async in a separate FastAPI worker with no public API surface of its own, so the save is never blocked waiting on it.",
+    stack: ["Next.js", "FastAPI", "PostgreSQL", "pgvector", "Prisma"],
+    badges: ["Auth: done", "In active development"],
+    github: "https://github.com/abhishekdutta619/MomentLog-AI",
+    // No demo -- per its own README, only Auth is marked done; the rest of
+    // the MVP (Moments, AI search, tasks, goals) is still in progress or
+    // planned.
   },
   {
     slug: "cloudsuite",

@@ -35,19 +35,11 @@ JetBrains Mono) at build time — this requires an internet connection.
 | `accent-teal` | `#52C7B8` | Interactive elements (links, CTAs, positive metrics) |
 | `accent-amber` | `#E8A33D` | Metric emphasis (negative/reduction metrics) |
 
-## Placeholders to replace before launch
-
-These are intentionally fake/generic and marked with comments in the code:
-
-- `lib/data/profile.ts` — `email`, `links.github`, `links.linkedin` are placeholders
-- `public/resume/` — add your real résumé PDF here, matching the filename referenced in `profile.ts`
-- `public/images/` — empty, will hold project screenshots and headshot from Phase 3 onward
-
 ## Roadmap
 
 1. ✅ Foundation — scaffold, design system, Hero
 2. About, Skills, Experience timeline, Testimonials, Contact form
-3. Projects — KanbanFlow case study (placeholder data), MomentLog, Expense Tracker
+3. Projects — Simply Dwell Design (Live), MomentLog AI (development), CloudSuite (development) and Sustainable Marketplace (Planning)
 4. Blog (MDX), motion/scroll-reveal pass, accessibility audit, résumé PDF wiring
 5. Deploy to Vercel, SEO metadata, domain setup
 
