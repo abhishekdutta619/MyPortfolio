@@ -1,27 +1,23 @@
-// PLACEHOLDER CONTENT — replace with real quotes before launch.
-// Structure/format is real; the names, roles, and words are not.
-// Swap each entry for an actual colleague/manager quote (LinkedIn
-// recommendations are a good source if you don't have quotes on hand).
-export const testimonials = [
+// Real LinkedIn recommendation. LinkedIn's own API doesn't expose
+// recommendations publicly, so these are copied by hand from the
+// profile's Recommendations tab -- update manually as new ones come in.
+export interface Testimonial {
+  id: string;
+  quote: string; // paragraphs separated by \n\n, rendered as separate <p> tags
+  name: string;
+  role: string;
+  linkedInUrl?: string; // omit rather than guess if you don't have their profile URL handy
+}
+
+export const testimonials: Testimonial[] = [
   {
-    id: "testimonial-1",
+    id: "jake-madrigal",
     quote:
-      "Placeholder — replace with a real quote about ownership, reliability, or impact on a project.",
-    name: "Full Name",
-    role: "Engineering Manager, Company",
+      "I had the opportunity to work with Abhishek for five years at Annex Cloud, where he was a software developer and a trusted partner to our Customer Success team. He regularly supported us on the front lines, helping debug complex issues for key customers and working quickly to identify solutions.\n\nAbhishek was always willing to jump in and help, and he consistently kept the customer's needs in mind. His technical expertise, responsiveness, and collaborative approach made him a valuable partner to both our team and our customers. I really enjoyed working with Abhishek and would recommend him to any team looking for a skilled and customer-focused developer.",
+    name: "Jake Madrigal",
+    role: "VP of Customer Success, Badge",
+    // linkedInUrl not set -- add Jake's profile URL here if you want the
+    // LinkedIn icon on the card to actually link somewhere. Without it,
+    // the component just omits the icon rather than linking nowhere.
   },
-  {
-    id: "testimonial-2",
-    quote:
-      "Placeholder — replace with a real quote, ideally one that mentions a specific outcome.",
-    name: "Full Name",
-    role: "Product Manager, Company",
-  },
-  {
-    id: "testimonial-3",
-    quote:
-      "Placeholder — replace with a real quote from a peer or teammate.",
-    name: "Full Name",
-    role: "Software Engineer, Company",
-  },
-] as const;
+];
